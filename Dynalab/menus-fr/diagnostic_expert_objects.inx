@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <id>dynalab.objects_expert</id>
+
+    <effect needs-live-preview="false" needs-document="true">
+        <effects-menu>
+            <submenu name=" Dynalab">
+                <submenu name="9 - Mode expert">
+                    <submenu name="1 - Diagnostiques"/>
+                </submenu>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <name>1 - Marquer les objets non vectorisés</name>
+
+    <param name="text" type="bool" gui-text="a - marquer les objets texte">true</param>
+    <param name="images" type="bool" gui-text="b - marquer les images">true</param>
+    <param name="shapes" type="bool" gui-text="c - marquer les formes simples">true</param>
+    <param name="effects" type="bool" gui-text="d - marquer les objets avec effets">true</param>
+    <param name="clones" type="bool" gui-text="e - marquer les clones">true</param>
+
+    <script>
+        <command location="inx" interpreter="python">../src/diagnostics_objects.py</command>
+    </script>
+</inkscape-extension>

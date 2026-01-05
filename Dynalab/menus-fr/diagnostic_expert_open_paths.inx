@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <id>dynalab.open_path_expert</id>
+
+    <effect needs-live-preview="false" needs-document="true">
+        <effects-menu>
+            <submenu name=" Dynalab">
+                <submenu name="9 - Mode expert">
+                    <submenu name="1 - Diagnostiques"/>
+                </submenu>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <name>4 - Marquer les chemins contenant des sous chemins ouverts</name>
+
+    <param name="only-fill-mode-paths" type="bool" value="true" gui-text="restreindre aux chemins de couleur 'gravure remplissage'"/>
+
+    <script>
+        <command location="inx" interpreter="python">../src/diagnostic_open_paths.py</command>
+    </script>
+</inkscape-extension>

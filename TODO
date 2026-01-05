@@ -1,0 +1,95 @@
+QUESTIONS
+=========
+
+Julien
+------
+
+  - pertinence de l'extension "suppression des groupes" ?
+  - pertinence d'une extension "transformer la sélection en chemin" ?
+  - configuration par défaut
+  - lancement automatique des diagnostiques avant l'export ? (=> ajouter
+    l'option)
+  - lancement automatique de "tout transformer en chemin" avant l'export ?
+    (Attention, pas de vérification possible.)
+  - recherche d'objets dupliqués :
+      - object (text, forme) / version vectorisée ?
+      - problème cercle / cercle avec transformation de rotation pas détecté
+
+
+Inkex / Inkscape
+----------------
+
+  - querying inkscape for the bounding boxes of nested groups doesn't work
+  - add a get_all_inkscape_bboxes method
+  - guarantee that the external inkscape command is the same as the calling
+    one? => inkscape could define an environment variable INKSCAPE_COMMAND
+    when calling an extension
+  - method for performing inkscape actions (--action) directly from inkex?
+
+
+GENERAL
+=======
+
+  - automatic tests => look at the way official extensions are tested using
+    pytest
+  - add automatic testing using github actions
+
+  - create French / English github releases using github actions
+
+  - find a way to deal with existing / default values when changing
+    configuration
+
+  - abort extensions if they take too long???
+
+  - translate to French
+
+  - write documentation in .md files so that we can point to the git repo
+    somewhere
+
+  - evaluate different free online documentation hosting solutions (readthedoc
+    and the like) and use github actions to deploy it
+
+  - config options for OK / WARNING / ERROR colors
+
+  - tagged element could receive a new description ("<desc>") for easy
+    selection in inkscape (Ctrl-f)
+      => it should be removed when cleaning artefacts
+      => ideally, it should keep existing descriptions (prefix those messages
+      with a special prefix???)
+    => it's probably best to never modify existing objects
+
+  - when several languages (menus) are installed, we could have an option
+    "make this language the default" in expert -> config
+    it would
+      - copy menus-LANG to menus
+      - rename <name>Dynalab - LANG</name> to <name>Dynalab</name>
+      - remove the "make this language the default" entry
+
+
+EXTENSIONS
+==========
+
+easy
+----
+
+  - check stroke colors for allowed modes
+
+not easy
+--------
+
+  - isolated elements ???
+  - strict duplicate elements (NOTE: the objects could be groups containing
+    many elements)
+  - approximation of total length for cutting / engraving and total area for
+    filling
+
+to discuss
+----------
+
+  - ??? bezier intersection and polygone intersections ???
+  - ??? resize to standard size
+  - ??? invisible elements (display:none, stroke:none and fill:none,
+    opacity:0, fill-opacity:0 and stroke-opacity:0, stroke-width:0, ...)
+  - ??? elements with wide stroke (>=1mm?)
+  - ??? refer to existing actions / extensions to correct some problems
+    (ungroup, convert to dash, etc.)
