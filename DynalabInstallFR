@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Chemins
+SOURCE="$HOME/Téléchargements/dynalab_ext-dev/Dynalab"
+DEST_DYNALAB="$HOME/.config/inkscape/extensions/Dynalab"
+
+# 1. Nettoyage total du dossier de destination
+if [ -d "$DEST_DYNALAB" ]; then
+    echo "Suppression de l'ancienne installation Dynalab..."
+    rm -rf "$DEST_DYNALAB"
+fi
+
+# 2. Création du dossier propre
+# On crée le dossier cible (on ne crée pas src ici car cp -r va le copier)
+mkdir -p "$DEST_DYNALAB"
+
+# 3. Installation
+echo "Copie des fichiers depuis $SOURCE..."
+# Ici on copie le contenu de src directement dans Dynalab
+cp -r "$SOURCE/src/" "$DEST_DYNALAB/src/"
+cp -r "$SOURCE/menus-fr/" "$DEST_DYNALAB/menus-fr/"
+
+echo "Déploiement terminé avec succès."
+
