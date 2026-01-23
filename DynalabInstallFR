@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Chemins
-SOURCE="$HOME/Téléchargements/dynalab_ext-dev/Dynalab"
+SOURCE="./Dynalab"
 DEST_DYNALAB="$HOME/.config/inkscape/extensions/Dynalab"
 
 # 1. Nettoyage total du dossier de destination
