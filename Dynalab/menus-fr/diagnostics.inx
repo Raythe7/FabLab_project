@@ -15,6 +15,11 @@
     <param name="tiny" type="bool" gui-text="3 - marque les éléments 'minuscules'">true</param>
     <param name="open-paths" type="bool" gui-text="4 - marque les chemins ouverts, MAIS SEULEMENT S'ILS SONT EN MODE 'GRAVURE REMPLISSAGE'">true</param>
     <param name="outside-objects" type="bool" gui-text="5 - marque les objets en dehors de la page">true</param>
+    <param name="max_time" type="float" min="0" max="3600"
+       gui-text="Temps maximum d'analyse (s) (0 = illimité)">
+    <default>3.0</default>
+    </param>
+
 
     <script>
         <command location="inx" interpreter="python">../src/diagnostics.py</command>
