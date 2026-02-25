@@ -97,7 +97,7 @@ class MeasureLength(dynalab.Ext):
         )
 
     def effect(self):
-        cpt = 0
+        tMin,tMax = 0,0
         # get number of digits
         prec = int(self.options.precision)
         scale = self.svg.viewport_to_unit(
@@ -128,23 +128,22 @@ class MeasureLength(dynalab.Ext):
                 continue
             # Format the length as string
             val = round(stotal * factor * self.options.scale, prec)
-            cpt += 1
             if self.options.mtype == "area":
                 values = csvReader.readAreaCSV(self.options.materials)
-                tMin = values[0]
-                tMax = values[1]
+                tMin += values[0] * val
+                tMax += values[1] * val
             else:
                 values = csvReader.readLengthCSV(self.options.materials)
-                tMin = values[0]
-                tMax = values[1]
+                tMin += values[0] * val
+                tMax += values[1] * val
 
-            self.message(
-                _(
-                    """
-                    Le chemin va prendre entre {tMin} et {tMax} à être dessiné
-                    """
-                ).format(tMin=tMin,tMax=tMax)
-            )
+        self.message(
+            _(
+                """
+                Le chemin va prendre entre {tMin} et {tMax} à être dessiné
+                """
+            ).format(tMin=tMin,tMax=tMax)
+        )
 
    
 if __name__ == "__main__":
