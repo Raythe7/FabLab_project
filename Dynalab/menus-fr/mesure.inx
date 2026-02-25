@@ -19,8 +19,8 @@
         <option translatable="no" value="cm">cm</option>
     </param>
     <param name="materials" type="optiongroup" appearance="combo" gui-text="Matériaux:">
-        <option value=1>Bois</option>
-        <option value=2>PVC</option>
+        <option value="1">Bois</option>
+        <option value="2">PVC</option>
     </param>
     <!-- ajouter les options pour savoir matériaux (et épaisseur?)-->
     <script>
