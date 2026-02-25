@@ -32,7 +32,8 @@ import inkex
 
 from gettext import gettext as _
 
-from lib import dynalab
+from lib import dynalab,csvReader
+
 
 from inkex.bezier import csparea, cspcofm
 from inkex.localization import inkex_gettext as _
@@ -124,13 +125,21 @@ class MeasureLength(dynalab.Ext):
             # Format the length as string
             val = round(stotal * factor * self.options.scale, prec)
             cpt += 1
-            
+            if self.options.mtype == "area":
+                values = csvReader.readAreaCSV()
+                tMin = values[0]
+                tMax = values[1]
+            else:
+                values = csvReader.readLengthCSV()
+                tMin = values[0]
+                tMax = values[1]
+
             self.message(
                 _(
                     """
-                    Le chemin {cpt} mesure {val}
+                    Le chemin va prendre entre {tMin} et {tMax} à être dessiné
                     """
-                ).format(cpt=cpt,val=val)
+                ).format(tMin=tMin,tMax=tMax)
             )
 
    
