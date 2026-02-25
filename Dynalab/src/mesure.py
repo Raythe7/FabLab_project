@@ -47,6 +47,10 @@ class MeasureLength(dynalab.Ext):
         pars.add_argument(
             "--type", dest="mtype", default="length", help="Type of measurement"
         )
+
+        pars.add_argument(
+            "--materials", dest="materials", type=int, default=1, help="Type of materials"
+        )
         
         pars.add_argument(
             "--presetFormat", default="default", help="Preset text layout"
@@ -126,11 +130,11 @@ class MeasureLength(dynalab.Ext):
             val = round(stotal * factor * self.options.scale, prec)
             cpt += 1
             if self.options.mtype == "area":
-                values = csvReader.readAreaCSV()
+                values = csvReader.readAreaCSV(self.options.materials)
                 tMin = values[0]
                 tMax = values[1]
             else:
-                values = csvReader.readLengthCSV()
+                values = csvReader.readLengthCSV(self.options.materials)
                 tMin = values[0]
                 tMax = values[1]
 
