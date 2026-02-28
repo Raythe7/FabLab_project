@@ -106,12 +106,20 @@ class MeasureLength(dynalab.Ext):
         self.options.offset *= scale
         factor = self.svg.unit_to_viewport(1, self.options.unit)
 
-        # loop over all selected paths
-        filtered = self.svg.selection.filter(inkex.PathElement)
-        if not filtered:
-            raise inkex.AbortExtension(_("Please select at least one path object."))
-        for node in filtered:
-            
+        paths = []
+
+        for elem in self.svg.selection.values():
+            if isinstance(elem, inkex.PathElement):
+                paths.append(elem)
+            else:
+                new_elem = elem.to_path_element()
+                elem.replace_with(new_elem)
+                paths.append(new_elem)
+
+        if not paths:
+            raise inkex.AbortExtension(_("Please select at least one object."))
+        
+        for node in paths:            
             path: inkex.Path = node.path.transform(node.composed_transform())
             if self.options.mtype == "length":
                 settings = LengthSettings(error=1e-8)

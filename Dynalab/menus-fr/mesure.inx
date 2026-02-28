@@ -8,7 +8,7 @@
             </submenu>
         </effects-menu>
     </effect>
-    <name>10 - T Mesurer une longueur</name>
+    <name>3 - Définir Temps de création</name>
 
     <param name="type" type="optiongroup" appearance="combo" gui-text="Measurement Type:">
         <option value="length">Length</option>   
