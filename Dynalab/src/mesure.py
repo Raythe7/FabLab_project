@@ -148,7 +148,7 @@ class MeasureLength(dynalab.Ext):
         self.message(
             _(
                 """
-                Le chemin va prendre entre {tMin} et {tMax} à être dessiné
+                Le chemin va prendre entre {tMin:.2f} et {tMax:.2f} à être dessiné
                 """
             ).format(tMin=tMin,tMax=tMax)
         )
