@@ -22,9 +22,17 @@ class MarkShapes(dynalab.Ext):
     def effect(self, clean=True):
         self.message(self.name, verbosity=3)
         self.init_artifact_layer()
+        max_time_s = getattr(self.options, "max_time", 0.0)
+        max_time_ms = max_time_s * 1000.0
+        limited = max_time_ms > 0
+
 
         counter = 0
-        for elem in self.selected_or_all(skip_groups=True):
+        for i, elem in enumerate(self.selected_or_all(skip_groups=True)):
+            if limited and (i % 200 == 0) and (self.get_timer() >= max_time_ms):
+                self.message(_("Analysis stopped: time limit reached (partial results)."), verbosity=1)
+                break
+            
             desc = _("object with id={id} of type {tag}").format(id=elem.get_id(), tag=elem.tag_name)
             if isinstance(
                 elem, (inkex.Line, inkex.Polyline, inkex.Polygon, inkex.Rectangle, inkex.Ellipse, inkex.Circle)
