@@ -109,12 +109,19 @@ class MeasureLength(dynalab.Ext):
         paths = []
 
         for elem in self.svg.selection.values():
-            if isinstance(elem, inkex.PathElement):
-                paths.append(elem)
+
+            elem_copy = elem.copy()
+
+            if isinstance(elem, inkex.TextElement):
+                text_copy = elem.copy()
+                path = text_copy.to_path_element()
+                paths.append(path)
+        
+            elif isinstance(elem_copy, inkex.PathElement):
+                paths.append(elem_copy)
+
             else:
-                new_elem = elem.to_path_element()
-                elem.replace_with(new_elem)
-                paths.append(new_elem)
+                paths.append(elem_copy.to_path_element())
 
         if not paths:
             raise inkex.AbortExtension(_("Please select at least one object."))
@@ -152,7 +159,6 @@ class MeasureLength(dynalab.Ext):
                 """
             ).format(tMin=tMin,tMax=tMax)
         )
-
    
 if __name__ == "__main__":
     MeasureLength().run()
